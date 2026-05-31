@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Users {
+  id           Int           @id @default(autoincrement())
+  username     String        @unique
+  passwordHash String        
+  transactions Transactions[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model Products {
+  id                 Int                 @id @default(autoincrement())
+  sku                String              @unique
+  name               String
+  price              Int
+  qty                Int
+  category           String
+  pictureUrl         String              
+  transactionDetails TransactionDetails[]
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+}
+
+model Transactions {
+  id              Int                 @id @default(autoincrement())
+  userId          Int                 
+  user            Users                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  totalPrice      Int                 
+  transactionTime DateTime            @default(now()) 
+  details         TransactionDetails[]
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+}
+
+model TransactionDetails {
+  id            Int         @id @default(autoincrement())
+  transactionId Int         
+  productId     Int         
+  qty           Int         
+  price         Int         
+  transaction   Transactions @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+  product       Products     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
