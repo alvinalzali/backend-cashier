@@ -17,6 +17,7 @@ export class AuthController {
     //login endpoint
     @Post('login')
     async login(@Body() loginDto: LoginDto) {
+        // validasi dulu user kemudian lanjut login (untuk ekstract token)
         const user = await this.authService.validateUser(loginDto.username, loginDto.password);
         return this.authService.login({ id: user.id, name: user.name });
     }
