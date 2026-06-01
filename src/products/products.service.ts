@@ -51,5 +51,27 @@ export class ProductsService {
         return this.prisma.products.findMany();
     }
 
+    //buat search product menggunakan nama atau sku
+    search(name: string) {
+        const product = this.prisma.products.findMany({
+            where: {
+                OR: [
+                            {name: {
+                                contains: name,
+                                mode: 'insensitive'
+                            },
+                        },
+                            {sku: {
+                                contains: name,
+                                mode: 'insensitive'
+                            },
+                        },
+                    ],
+            },
+        });
+        return product;
+    }
+
+
     
 }   

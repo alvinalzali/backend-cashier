@@ -37,4 +37,10 @@ export class ProductsController {
     getAll() {
         return this.productsService.getAll();
     }
+
+    //endpoint Search by Name/id
+    @Get('search/:name')
+    search(@Param('name') name: string) {
+        return this.productsService.search(name);
+    }
 }
