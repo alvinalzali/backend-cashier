@@ -50,6 +50,11 @@ export type Users = Prisma.UsersModel
  */
 export type Products = Prisma.ProductsModel
 /**
+ * Model Cart
+ * 
+ */
+export type Cart = Prisma.CartModel
+/**
  * Model Transactions
  * 
  */

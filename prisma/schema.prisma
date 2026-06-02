@@ -4,8 +4,8 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider      = "prisma-client"
-  output        = "../src/generated/prisma"
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
   moduleFormat = "cjs"
 }
 
@@ -15,48 +15,60 @@ datasource db {
 }
 
 model Users {
-  id           Int           @id @default(autoincrement())
-  username     String        @unique
-  name         String        
-  passwordHash String        
+  id           Int            @id @default(autoincrement())
+  username     String         @unique
+  name         String
+  passwordHash String
   transactions Transactions[]
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  carts        Cart[]
 }
 
 model Products {
-  id                 Int                 @id @default(autoincrement())
-  sku                String              @unique
+  id                 Int                  @id @default(autoincrement())
+  sku                String               @unique
   name               String
   price              Int
   qty                Int
   category           String
-  pictureUrl         String              
+  pictureUrl         String
   transactionDetails TransactionDetails[]
-  createdAt          DateTime            @default(now())
-  updatedAt          DateTime            @updatedAt
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  carts              Cart[]
+}
+
+model Cart {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  productId Int
+  qty       Int
+  user      Users    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Products @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Transactions {
-  id              Int                 @id @default(autoincrement())
-  userId          Int                 
+  id              Int                  @id @default(autoincrement())
+  userId          Int
   user            Users                @relation(fields: [userId], references: [id], onDelete: Cascade)
-  totalPrice      Int                 
-  transactionTime DateTime            @default(now()) 
+  totalPrice      Int
+  transactionTime DateTime             @default(now())
   details         TransactionDetails[]
-  createdAt       DateTime            @default(now())
-  updatedAt       DateTime            @updatedAt
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
 }
 
 model TransactionDetails {
-  id            Int         @id @default(autoincrement())
-  transactionId Int         
-  productId     Int         
-  qty           Int         
-  price         Int         
+  id            Int          @id @default(autoincrement())
+  transactionId Int
+  productId     Int
+  qty           Int
+  price         Int
   transaction   Transactions @relation(fields: [transactionId], references: [id], onDelete: Cascade)
   product       Products     @relation(fields: [productId], references: [id], onDelete: Cascade)
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
 }
-
