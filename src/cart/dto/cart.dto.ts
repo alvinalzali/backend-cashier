@@ -3,14 +3,16 @@ import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 
 export class AddToCartDto {
-    constructor(id: number, userId: number, productId: number, qty: number){
+    constructor(id: number, userId: number, productId: number, qty: number, totalPrice: number){
         this.id = id;
         this.userId = userId;
         this.productId = productId;
         this.qty = qty;
+        this.totalPrice = totalPrice;
+
     }
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsNumber()
     id: number;
 
@@ -18,13 +20,19 @@ export class AddToCartDto {
     @IsNumber()
     userId: number;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsNumber()
     productId: number;
 
     @IsNotEmpty()
     @IsNumber()
     qty: number;
+
+    @IsOptional()
+    @IsNumber()
+    totalPrice: number;
+
+
 }
 
 export class CartUpdateDto {

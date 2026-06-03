@@ -1,33 +1,56 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ConflictException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { AddToCartDto, CartUpdateDto } from './dto/cart.dto';
-import { AuthGuard } from '../auth/auth.guard';
+
 
 @Injectable()
 export class CartService {
     constructor(private prisma: PrismaService) {}
 
     async addToCart(productId: number, addToCartDto: AddToCartDto) {
-        const { id, userId, qty } = addToCartDto;
+        const { userId, qty } = addToCartDto;
         productId = Number(productId);
 
         //cek kalau item sudah ada di keranjang
         const existingItem = await this.prisma.cart.findFirst({
             where: {
-                OR : [
+                AND : [
                 { productId: productId },
                 { userId: userId }
                 ]
             }
         })
+        
+        //hitung total price, harga barang diambil dari tabel o
+        const product = await this.prisma.products.findUnique({ where: { id: productId } });
 
-        //tambahkan qty jika sudah ada 
-        if (existingItem) {
-            existingItem.qty = existingItem.qty + qty;
-            return this.prisma.cart.update({ where: { id: existingItem.id }, data: { qty: existingItem.qty } });   
+        if (!product) {
+            throw new Error('Product not found');
         }
-        return this.prisma.cart.create({ data: { id, userId, productId, qty } });
+
+        const totalPrice = product.price * qty;
+
+        //tambahkan qty dan update totatPrice
+        if (existingItem) {
+            const updatedQty = existingItem.qty + qty;
+            const updatedTotalPrice = existingItem.totalPrice + totalPrice;
+            return this.prisma.cart.update({
+                where: { id: existingItem.id },
+                data: { qty: updatedQty, totalPrice: updatedTotalPrice }
+            });
+        }
+
+        return this.prisma.cart.create({
+            data: {
+                userId,
+                productId,
+                qty,
+                totalPrice
+            }
+        })
     }
+
+
 
     async getCart(userId: number) {
         userId = Number(userId);
@@ -37,7 +60,27 @@ export class CartService {
     async updateCart(id: number, CartUpdateDto: CartUpdateDto) {
         const { userId, productId, qty } = CartUpdateDto;
         id = Number(id);
-        return this.prisma.cart.update({ where: { id }, data: { userId, productId, qty } });
+
+         //cek kalau item sudah ada di keranjang by id cart
+        const existingItem = await this.prisma.cart.findUnique({ where: { id } });
+
+        if (!existingItem) {
+            throw new Error('Item not found in cart');
+        }
+
+        //hitung total price, harga barang diambil dari tabel products, 
+        const product = await this.prisma.products.findUnique({ where: { id: existingItem.productId } });
+
+        if (!product) {
+            throw new Error('Product not found');
+        }
+
+        const totalPrice = product.price * qty;
+
+        return this.prisma.cart.update({
+            where: { id },
+            data: { qty, totalPrice }
+        });
     }
 
 

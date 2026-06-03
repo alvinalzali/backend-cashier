@@ -44,6 +44,7 @@ model Cart {
   userId    Int
   productId Int
   qty       Int
+  totalPrice Int     @default(0)
   user      Users    @relation(fields: [userId], references: [id], onDelete: Cascade)
   product   Products @relation(fields: [productId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
@@ -54,6 +55,8 @@ model Transactions {
   id              Int                  @id @default(autoincrement())
   userId          Int
   user            Users                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  moneyPayed      Int                  @default(0)
+  moneyChanged    Int                  @default(0)
   totalPrice      Int
   transactionTime DateTime             @default(now())
   details         TransactionDetails[]

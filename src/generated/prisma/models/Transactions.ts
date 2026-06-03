@@ -29,18 +29,24 @@ export type AggregateTransactions = {
 export type TransactionsAvgAggregateOutputType = {
   id: number | null
   userId: number | null
+  moneyPayed: number | null
+  moneyChanged: number | null
   totalPrice: number | null
 }
 
 export type TransactionsSumAggregateOutputType = {
   id: number | null
   userId: number | null
+  moneyPayed: number | null
+  moneyChanged: number | null
   totalPrice: number | null
 }
 
 export type TransactionsMinAggregateOutputType = {
   id: number | null
   userId: number | null
+  moneyPayed: number | null
+  moneyChanged: number | null
   totalPrice: number | null
   transactionTime: Date | null
   createdAt: Date | null
@@ -50,6 +56,8 @@ export type TransactionsMinAggregateOutputType = {
 export type TransactionsMaxAggregateOutputType = {
   id: number | null
   userId: number | null
+  moneyPayed: number | null
+  moneyChanged: number | null
   totalPrice: number | null
   transactionTime: Date | null
   createdAt: Date | null
@@ -59,6 +67,8 @@ export type TransactionsMaxAggregateOutputType = {
 export type TransactionsCountAggregateOutputType = {
   id: number
   userId: number
+  moneyPayed: number
+  moneyChanged: number
   totalPrice: number
   transactionTime: number
   createdAt: number
@@ -70,18 +80,24 @@ export type TransactionsCountAggregateOutputType = {
 export type TransactionsAvgAggregateInputType = {
   id?: true
   userId?: true
+  moneyPayed?: true
+  moneyChanged?: true
   totalPrice?: true
 }
 
 export type TransactionsSumAggregateInputType = {
   id?: true
   userId?: true
+  moneyPayed?: true
+  moneyChanged?: true
   totalPrice?: true
 }
 
 export type TransactionsMinAggregateInputType = {
   id?: true
   userId?: true
+  moneyPayed?: true
+  moneyChanged?: true
   totalPrice?: true
   transactionTime?: true
   createdAt?: true
@@ -91,6 +107,8 @@ export type TransactionsMinAggregateInputType = {
 export type TransactionsMaxAggregateInputType = {
   id?: true
   userId?: true
+  moneyPayed?: true
+  moneyChanged?: true
   totalPrice?: true
   transactionTime?: true
   createdAt?: true
@@ -100,6 +118,8 @@ export type TransactionsMaxAggregateInputType = {
 export type TransactionsCountAggregateInputType = {
   id?: true
   userId?: true
+  moneyPayed?: true
+  moneyChanged?: true
   totalPrice?: true
   transactionTime?: true
   createdAt?: true
@@ -196,6 +216,8 @@ export type TransactionsGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type TransactionsGroupByOutputType = {
   id: number
   userId: number
+  moneyPayed: number
+  moneyChanged: number
   totalPrice: number
   transactionTime: Date
   createdAt: Date
@@ -228,6 +250,8 @@ export type TransactionsWhereInput = {
   NOT?: Prisma.TransactionsWhereInput | Prisma.TransactionsWhereInput[]
   id?: Prisma.IntFilter<"Transactions"> | number
   userId?: Prisma.IntFilter<"Transactions"> | number
+  moneyPayed?: Prisma.IntFilter<"Transactions"> | number
+  moneyChanged?: Prisma.IntFilter<"Transactions"> | number
   totalPrice?: Prisma.IntFilter<"Transactions"> | number
   transactionTime?: Prisma.DateTimeFilter<"Transactions"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Transactions"> | Date | string
@@ -239,6 +263,8 @@ export type TransactionsWhereInput = {
 export type TransactionsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  moneyPayed?: Prisma.SortOrder
+  moneyChanged?: Prisma.SortOrder
   totalPrice?: Prisma.SortOrder
   transactionTime?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -253,6 +279,8 @@ export type TransactionsWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.TransactionsWhereInput[]
   NOT?: Prisma.TransactionsWhereInput | Prisma.TransactionsWhereInput[]
   userId?: Prisma.IntFilter<"Transactions"> | number
+  moneyPayed?: Prisma.IntFilter<"Transactions"> | number
+  moneyChanged?: Prisma.IntFilter<"Transactions"> | number
   totalPrice?: Prisma.IntFilter<"Transactions"> | number
   transactionTime?: Prisma.DateTimeFilter<"Transactions"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Transactions"> | Date | string
@@ -264,6 +292,8 @@ export type TransactionsWhereUniqueInput = Prisma.AtLeast<{
 export type TransactionsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  moneyPayed?: Prisma.SortOrder
+  moneyChanged?: Prisma.SortOrder
   totalPrice?: Prisma.SortOrder
   transactionTime?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -281,6 +311,8 @@ export type TransactionsScalarWhereWithAggregatesInput = {
   NOT?: Prisma.TransactionsScalarWhereWithAggregatesInput | Prisma.TransactionsScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Transactions"> | number
   userId?: Prisma.IntWithAggregatesFilter<"Transactions"> | number
+  moneyPayed?: Prisma.IntWithAggregatesFilter<"Transactions"> | number
+  moneyChanged?: Prisma.IntWithAggregatesFilter<"Transactions"> | number
   totalPrice?: Prisma.IntWithAggregatesFilter<"Transactions"> | number
   transactionTime?: Prisma.DateTimeWithAggregatesFilter<"Transactions"> | Date | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Transactions"> | Date | string
@@ -288,6 +320,8 @@ export type TransactionsScalarWhereWithAggregatesInput = {
 }
 
 export type TransactionsCreateInput = {
+  moneyPayed?: number
+  moneyChanged?: number
   totalPrice: number
   transactionTime?: Date | string
   createdAt?: Date | string
@@ -299,6 +333,8 @@ export type TransactionsCreateInput = {
 export type TransactionsUncheckedCreateInput = {
   id?: number
   userId: number
+  moneyPayed?: number
+  moneyChanged?: number
   totalPrice: number
   transactionTime?: Date | string
   createdAt?: Date | string
@@ -307,6 +343,8 @@ export type TransactionsUncheckedCreateInput = {
 }
 
 export type TransactionsUpdateInput = {
+  moneyPayed?: Prisma.IntFieldUpdateOperationsInput | number
+  moneyChanged?: Prisma.IntFieldUpdateOperationsInput | number
   totalPrice?: Prisma.IntFieldUpdateOperationsInput | number
   transactionTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -318,6 +356,8 @@ export type TransactionsUpdateInput = {
 export type TransactionsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
+  moneyPayed?: Prisma.IntFieldUpdateOperationsInput | number
+  moneyChanged?: Prisma.IntFieldUpdateOperationsInput | number
   totalPrice?: Prisma.IntFieldUpdateOperationsInput | number
   transactionTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -328,6 +368,8 @@ export type TransactionsUncheckedUpdateInput = {
 export type TransactionsCreateManyInput = {
   id?: number
   userId: number
+  moneyPayed?: number
+  moneyChanged?: number
   totalPrice: number
   transactionTime?: Date | string
   createdAt?: Date | string
@@ -335,6 +377,8 @@ export type TransactionsCreateManyInput = {
 }
 
 export type TransactionsUpdateManyMutationInput = {
+  moneyPayed?: Prisma.IntFieldUpdateOperationsInput | number
+  moneyChanged?: Prisma.IntFieldUpdateOperationsInput | number
   totalPrice?: Prisma.IntFieldUpdateOperationsInput | number
   transactionTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -344,6 +388,8 @@ export type TransactionsUpdateManyMutationInput = {
 export type TransactionsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
+  moneyPayed?: Prisma.IntFieldUpdateOperationsInput | number
+  moneyChanged?: Prisma.IntFieldUpdateOperationsInput | number
   totalPrice?: Prisma.IntFieldUpdateOperationsInput | number
   transactionTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -363,6 +409,8 @@ export type TransactionsOrderByRelationAggregateInput = {
 export type TransactionsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  moneyPayed?: Prisma.SortOrder
+  moneyChanged?: Prisma.SortOrder
   totalPrice?: Prisma.SortOrder
   transactionTime?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -372,12 +420,16 @@ export type TransactionsCountOrderByAggregateInput = {
 export type TransactionsAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  moneyPayed?: Prisma.SortOrder
+  moneyChanged?: Prisma.SortOrder
   totalPrice?: Prisma.SortOrder
 }
 
 export type TransactionsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  moneyPayed?: Prisma.SortOrder
+  moneyChanged?: Prisma.SortOrder
   totalPrice?: Prisma.SortOrder
   transactionTime?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -387,6 +439,8 @@ export type TransactionsMaxOrderByAggregateInput = {
 export type TransactionsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  moneyPayed?: Prisma.SortOrder
+  moneyChanged?: Prisma.SortOrder
   totalPrice?: Prisma.SortOrder
   transactionTime?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -396,6 +450,8 @@ export type TransactionsMinOrderByAggregateInput = {
 export type TransactionsSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  moneyPayed?: Prisma.SortOrder
+  moneyChanged?: Prisma.SortOrder
   totalPrice?: Prisma.SortOrder
 }
 
@@ -461,6 +517,8 @@ export type TransactionsUpdateOneRequiredWithoutDetailsNestedInput = {
 }
 
 export type TransactionsCreateWithoutUserInput = {
+  moneyPayed?: number
+  moneyChanged?: number
   totalPrice: number
   transactionTime?: Date | string
   createdAt?: Date | string
@@ -470,6 +528,8 @@ export type TransactionsCreateWithoutUserInput = {
 
 export type TransactionsUncheckedCreateWithoutUserInput = {
   id?: number
+  moneyPayed?: number
+  moneyChanged?: number
   totalPrice: number
   transactionTime?: Date | string
   createdAt?: Date | string
@@ -509,6 +569,8 @@ export type TransactionsScalarWhereInput = {
   NOT?: Prisma.TransactionsScalarWhereInput | Prisma.TransactionsScalarWhereInput[]
   id?: Prisma.IntFilter<"Transactions"> | number
   userId?: Prisma.IntFilter<"Transactions"> | number
+  moneyPayed?: Prisma.IntFilter<"Transactions"> | number
+  moneyChanged?: Prisma.IntFilter<"Transactions"> | number
   totalPrice?: Prisma.IntFilter<"Transactions"> | number
   transactionTime?: Prisma.DateTimeFilter<"Transactions"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Transactions"> | Date | string
@@ -516,6 +578,8 @@ export type TransactionsScalarWhereInput = {
 }
 
 export type TransactionsCreateWithoutDetailsInput = {
+  moneyPayed?: number
+  moneyChanged?: number
   totalPrice: number
   transactionTime?: Date | string
   createdAt?: Date | string
@@ -526,6 +590,8 @@ export type TransactionsCreateWithoutDetailsInput = {
 export type TransactionsUncheckedCreateWithoutDetailsInput = {
   id?: number
   userId: number
+  moneyPayed?: number
+  moneyChanged?: number
   totalPrice: number
   transactionTime?: Date | string
   createdAt?: Date | string
@@ -549,6 +615,8 @@ export type TransactionsUpdateToOneWithWhereWithoutDetailsInput = {
 }
 
 export type TransactionsUpdateWithoutDetailsInput = {
+  moneyPayed?: Prisma.IntFieldUpdateOperationsInput | number
+  moneyChanged?: Prisma.IntFieldUpdateOperationsInput | number
   totalPrice?: Prisma.IntFieldUpdateOperationsInput | number
   transactionTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -559,6 +627,8 @@ export type TransactionsUpdateWithoutDetailsInput = {
 export type TransactionsUncheckedUpdateWithoutDetailsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
+  moneyPayed?: Prisma.IntFieldUpdateOperationsInput | number
+  moneyChanged?: Prisma.IntFieldUpdateOperationsInput | number
   totalPrice?: Prisma.IntFieldUpdateOperationsInput | number
   transactionTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -567,6 +637,8 @@ export type TransactionsUncheckedUpdateWithoutDetailsInput = {
 
 export type TransactionsCreateManyUserInput = {
   id?: number
+  moneyPayed?: number
+  moneyChanged?: number
   totalPrice: number
   transactionTime?: Date | string
   createdAt?: Date | string
@@ -574,6 +646,8 @@ export type TransactionsCreateManyUserInput = {
 }
 
 export type TransactionsUpdateWithoutUserInput = {
+  moneyPayed?: Prisma.IntFieldUpdateOperationsInput | number
+  moneyChanged?: Prisma.IntFieldUpdateOperationsInput | number
   totalPrice?: Prisma.IntFieldUpdateOperationsInput | number
   transactionTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -583,6 +657,8 @@ export type TransactionsUpdateWithoutUserInput = {
 
 export type TransactionsUncheckedUpdateWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  moneyPayed?: Prisma.IntFieldUpdateOperationsInput | number
+  moneyChanged?: Prisma.IntFieldUpdateOperationsInput | number
   totalPrice?: Prisma.IntFieldUpdateOperationsInput | number
   transactionTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -592,6 +668,8 @@ export type TransactionsUncheckedUpdateWithoutUserInput = {
 
 export type TransactionsUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  moneyPayed?: Prisma.IntFieldUpdateOperationsInput | number
+  moneyChanged?: Prisma.IntFieldUpdateOperationsInput | number
   totalPrice?: Prisma.IntFieldUpdateOperationsInput | number
   transactionTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -632,6 +710,8 @@ export type TransactionsCountOutputTypeCountDetailsArgs<ExtArgs extends runtime.
 export type TransactionsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
+  moneyPayed?: boolean
+  moneyChanged?: boolean
   totalPrice?: boolean
   transactionTime?: boolean
   createdAt?: boolean
@@ -644,6 +724,8 @@ export type TransactionsSelect<ExtArgs extends runtime.Types.Extensions.Internal
 export type TransactionsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
+  moneyPayed?: boolean
+  moneyChanged?: boolean
   totalPrice?: boolean
   transactionTime?: boolean
   createdAt?: boolean
@@ -654,6 +736,8 @@ export type TransactionsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
 export type TransactionsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
+  moneyPayed?: boolean
+  moneyChanged?: boolean
   totalPrice?: boolean
   transactionTime?: boolean
   createdAt?: boolean
@@ -664,13 +748,15 @@ export type TransactionsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
 export type TransactionsSelectScalar = {
   id?: boolean
   userId?: boolean
+  moneyPayed?: boolean
+  moneyChanged?: boolean
   totalPrice?: boolean
   transactionTime?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type TransactionsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "totalPrice" | "transactionTime" | "createdAt" | "updatedAt", ExtArgs["result"]["transactions"]>
+export type TransactionsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "moneyPayed" | "moneyChanged" | "totalPrice" | "transactionTime" | "createdAt" | "updatedAt", ExtArgs["result"]["transactions"]>
 export type TransactionsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UsersDefaultArgs<ExtArgs>
   details?: boolean | Prisma.Transactions$detailsArgs<ExtArgs>
@@ -692,6 +778,8 @@ export type $TransactionsPayload<ExtArgs extends runtime.Types.Extensions.Intern
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     userId: number
+    moneyPayed: number
+    moneyChanged: number
     totalPrice: number
     transactionTime: Date
     createdAt: Date
@@ -1123,6 +1211,8 @@ export interface Prisma__TransactionsClient<T, Null = never, ExtArgs extends run
 export interface TransactionsFieldRefs {
   readonly id: Prisma.FieldRef<"Transactions", 'Int'>
   readonly userId: Prisma.FieldRef<"Transactions", 'Int'>
+  readonly moneyPayed: Prisma.FieldRef<"Transactions", 'Int'>
+  readonly moneyChanged: Prisma.FieldRef<"Transactions", 'Int'>
   readonly totalPrice: Prisma.FieldRef<"Transactions", 'Int'>
   readonly transactionTime: Prisma.FieldRef<"Transactions", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Transactions", 'DateTime'>
