@@ -54,7 +54,12 @@ export class CartService {
 
     async getCart(userId: number) {
         userId = Number(userId);
-        return this.prisma.cart.findMany({ where: { userId } });
+        return this.prisma.cart.findMany({
+            where: { userId },
+            include: {
+                product: true
+            },
+        });
     }
 
     async updateCart(id: number, CartUpdateDto: CartUpdateDto) {
@@ -86,7 +91,8 @@ export class CartService {
 
     async deleteItemFromCart(id: number) {
         id = Number(id);
-        return this.prisma.cart.delete({ where: { id } });
+        return this.prisma.cart.delete(
+            { where: { id } });
     }
 
 

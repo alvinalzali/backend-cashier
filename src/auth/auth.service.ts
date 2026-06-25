@@ -8,10 +8,6 @@ import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class AuthService {
 
-    // helper untuk cari unique
-    findUnique(arg0: { where: { id: any; }; }) {
-        throw new Error('Method not implemented.');
-    }
     constructor(
         private prisma: PrismaService, 
         private jwtService: JwtService

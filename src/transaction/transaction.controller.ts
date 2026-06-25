@@ -1,4 +1,4 @@
-import { Controller, Body, Post, UseGuards, Get, Param } from '@nestjs/common';
+import { Controller, Body, Post, UseGuards, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { TransactionService } from './transaction.service';
 import { TransactionDto } from './dto/transaction.dto';
 import { AuthGuard } from '../auth/auth.guard';
@@ -22,7 +22,7 @@ export class TransactionController {
 
     //get data transaksi berdasarkan id
     @Get(':id')
-    getTransactionById(@Param('id') id: number) {
+    getTransactionById(@Param('id', ParseIntPipe) id: number) {
         return this.TransactionService.getTransactionById(id);
     }
 

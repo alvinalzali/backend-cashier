@@ -53,8 +53,18 @@ export class TransactionService {
 
     //ambil transaksi berdasarkan id transaksi
     async getTransactionById(id: number) {
-        const transactionById = await this.prisma.transactions.findUnique({ where: { id }, include: { details: true } });
-        return transactionById;
+    const transactionById = await this.prisma.transactions.findUnique({
+        where: { id },
+        include: { 
+            user: true, 
+            details: {
+                include: {
+                    product: true 
+                }
+            }
+        }
+    });
+    return transactionById;
     }
 
     async getAllTransaction() {
