@@ -58,3 +58,6 @@ export class TransactionDto {
     @Type(() => TransactionDetailsDto)
     details: TransactionDetailsDto[];
 }
+
+
+

@@ -10,6 +10,7 @@ import { TransactionService } from './transaction/transaction.service';
 import { TransactionModule } from './transaction/transaction.module';
 import { FileController } from './file/file.controller';
 import { FileModule } from './file/file.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -22,7 +23,8 @@ import { FileModule } from './file/file.module';
     ProductsModule,
     CartModule,
     TransactionModule,
-    FileModule],
+    FileModule,
+    DashboardModule],
   controllers: [AppController, FileController],
   providers: [AppService, TransactionService],
 })
