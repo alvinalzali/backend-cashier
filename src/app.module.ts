@@ -11,6 +11,7 @@ import { TransactionModule } from './transaction/transaction.module';
 import { FileController } from './file/file.controller';
 import { FileModule } from './file/file.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { UploadModule } from './upload/upload.module';
 
 @Module({
   imports: [
@@ -24,7 +25,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
     CartModule,
     TransactionModule,
     FileModule,
-    DashboardModule],
+    DashboardModule,
+    UploadModule],
   controllers: [AppController, FileController],
   providers: [AppService, TransactionService],
 })
