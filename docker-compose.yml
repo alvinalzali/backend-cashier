@@ -1,18 +1,30 @@
-#postgreSQL
 services:
-  postgres:
-    image: postgres:17-alpine
-    container_name: postgres_cashier
-    ports:
-      - "5433:5432"
+  postgres_db:
+    image: postgres:16-alpine
+    container_name: cashier_postgres
+    restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "127.0.0.1:5433:5432"
     volumes:
-      - postgres:/var/lib/postgresql/data
-    restart: unless-stopped
+      - postgres_cashier_data:/var/lib/postgresql/data
+
+  backend_api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cashier_backend
+    restart: always
+    ports:
+      - "127.0.0.1:3005:3000"
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      JWT_SECRET: ${JWT_SECRET}
+    depends_on:
+      - postgres_db
 
 volumes:
-  postgres:
-    driver: local
+  postgres_cashier_data:
