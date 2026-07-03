@@ -60,7 +60,7 @@ async function main() {
             price: 18000,
             qty: 50,
             category: 'Minuman',
-            pictureUrl: 'http://localhost:3000/uploads/kopisusugulaaren.jpg',
+            pictureUrl: 'http://localhost:3005/uploads/kopisusugulaaren.jpg',
         },
         {
             sku: 'PROD-FOOD-002',
